@@ -8,8 +8,8 @@ class HelloAkkaSpec(_system: ActorSystem)
   with ImplicitSender
   with Matchers
   with FlatSpecLike
-  with BeforeAndAfterAll {
-
+  with BeforeAndAfterAll
+{
   def this() = this(ActorSystem("HelloAkkaSpec"))
 
   override def afterAll: Unit = {

@@ -5,7 +5,7 @@ version := "1.0.0"
 scalaVersion := "2.11.5"
 
 lazy val root = (project in file("."))
-  .enablePlugins(PlayScala)
+  .enablePlugins(JavaServerAppPackaging)
 
 libraryDependencies ++= Seq(
   "org.slf4j" % "slf4j-simple" % "1.7.10",

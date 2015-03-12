@@ -16,7 +16,7 @@ object PleaseNoSleep extends App {
   val urlToPing: List[String] = Properties.envOrElse("URL_TO_PING", "").split(",").toList
 
   val handler = system.actorOf(Props[Handler], name = "handler")
-  IO(HttpS) ! HttpS.Bind(handler, "localhost", 8080)
+  IO(HttpS) ! HttpS.Bind(handler, "0.0.0.0", port = Properties.envOrElse("PORT", "8080").toInt)
 
   system.scheduler.schedule(0 seconds, 5 seconds){(
     pingAll(urlToPing)

@@ -28,11 +28,11 @@ URL must be separated with comma `,`
 
 **Important**, you also have to add your PleaseNoSleep app URL to `URL_TO_PING`, so it will keep itself awake.
 
-For example, at the [CatFactory team](), we have this :
+For example, at the [CatFactory team](https://github.com/CatFactoryTeam), we have this :
 
 `URL_TO_PING=http://catfactory-api.herokuapp.com,http://catfactory.herokuapp.com,http://serene-dusk-6746.herokuapp.com`
 
-Where `http://serene-dusk-6746.herokuapp.com` is the PleaseNoSleep app.
+Where `http://serene-dusk-6746.herokuapp.com` is our PleaseNoSleep app.
 
 And finally, deploy it :
 

@@ -1,7 +1,7 @@
 import dispatch._
 import Defaults._
 import akka.io.IO
-import spray.can.{Http => HttpS}
+import spray.can.{Http => HttpSpray}
 import scala.util.Properties
 import akka.actor.{Actor, ActorSystem, Props}
 import org.slf4j.LoggerFactory
@@ -15,12 +15,13 @@ object PleaseNoSleep extends App {
   val logger = Logger(LoggerFactory.getLogger("PleaseNoSleep"))
   val urlToPing: List[String] = Properties.envOrElse("URL_TO_PING", "").split(",").toList
 
-  val handler = system.actorOf(Props[Handler], name = "handler")
-  IO(HttpS) ! HttpS.Bind(handler, "0.0.0.0", port = Properties.envOrElse("PORT", "8080").toInt)
+  val handler = system.actorOf(Props[HttpHandler], name = "handler")
 
-  system.scheduler.schedule(0 seconds, 5 minutes){(
-    pingAll(urlToPing)
-  )}
+  // Set up a tiny HTTP server
+  IO(HttpSpray) ! HttpSpray.Bind(handler, "0.0.0.0", port = Properties.envOrElse("PORT", "8080").toInt)
+
+  // Set an Akka scheduler to ping all URL every 5 minutes
+  system.scheduler.schedule(0 seconds, 5 minutes)(pingAll(urlToPing))
 
   /** Ping all URL to keep them awake
     *
@@ -31,7 +32,7 @@ object PleaseNoSleep extends App {
     case Nil => Unit
   }
 
-  /** Ping an URL to keep him awake
+  /** Ping an URL
     *
     * @param toPing URL to ping
     */
@@ -41,9 +42,9 @@ object PleaseNoSleep extends App {
   }
 }
 
-class Handler extends Actor {
+class HttpHandler extends Actor {
   def receive = {
-    case _: HttpS.Connected => sender ! HttpS.Register(self)
+    case _: HttpSpray.Connected => sender ! HttpSpray.Register(self)
     case _: HttpRequest => sender ! HttpResponse(entity = "Please, no sleep.")
   }
 }

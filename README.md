@@ -2,6 +2,10 @@
 
 Prevent your heroku apps from sleeping... by yourself !
 
+<p align="center">
+  <img src="http://i.imgur.com/uoCSZO2.gif"/>
+</p>
+
 ## Why ?
 
 Don't rely on 3rd party services to keep awake your heroku apps.

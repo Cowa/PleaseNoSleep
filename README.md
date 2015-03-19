@@ -20,7 +20,7 @@ Clone this repo :
 
 Obviously, you should have the [heroku toolbelt](https://toolbelt.heroku.com/).
 
-Create a new heroku app :
+Inside this repo, create a new heroku app :
 
 `heroku create`
 

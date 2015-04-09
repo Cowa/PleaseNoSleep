@@ -1,18 +1,18 @@
 # Please, no sleep.
 
-Prevent your heroku apps from sleeping... by yourself !
+Prevent your heroku apps from sleeping... by yourself!
 
 <p align="center">
   <img src="http://i.imgur.com/uoCSZO2.gif"/>
 </p>
 
-## Why ?
+## Why?
 
 Don't rely on 3rd party services to keep awake your heroku apps.
 
 Manage it by yourself, it's a piece of cake and free **:)**
 
-## How to use ?
+## How to use?
 
 Clone this repo :
 
@@ -42,7 +42,7 @@ And finally, deploy it :
 
 `git push heroku master`
 
-Hooray ! Your heroku apps will no longer fall asleep **:)**
+Hooray! Your heroku apps will no longer fall asleep **:)**
 
 ## Powered by
 
